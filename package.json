@@ -1,0 +1,26 @@
+{
+  "name": "contatooh",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeSilvaCosta/contatooh.git"
+  },
+  "author": "Guilherme Costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeSilvaCosta/contatooh/issues"
+  },
+  "homepage": "https://github.com/GuilhermeSilvaCosta/contatooh#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-load": "^1.1.15",
+    "install": "^0.8.1"
+  }
+}

@@ -1,30 +1,28 @@
 angular.module('contatooh').controller('ContatosController',ContatosController);
 
 
-function ContatosController($scope, $http){
-    $scope.total = 0;
+function ContatosController($scope, $resource){
     $scope.filtro = '';
 
-    $scope.incrementa = incrementa;
-    function incrementa(){
-        $scope.total++;
+    $scope.contatos = [];
+
+    function sucesso(contatos){
+        $scope.contatos = contatos;
     }
 
-    $scope.contatos = [
-    {
-        "_id": 1,
-        "nome": "Contato Angular 1",
-        "email": "cont1@empresa.com.br"
-    },
-    {
-        "_id": 2,
-        "nome": "Contato Angular 2",
-        "email": "cont2@empresa.com.br"
-    },
-    {
-        "_id": 3,
-        "nome": "Contato Angular 3",
-        "email": "cont3@empresa.com.br"
+    function erro(erro){
+        console.log(erro);
     }
-    ];
+
+    var Contato = $resource('/contatos/:id');
+
+    function buscaContatos(){
+        Contato.query(sucesso, erro);
+    }
+    buscaContatos();
+
+    $scope.remove = remove;
+    function remove(contato){
+        Contato.delete({id: contato._id}, buscaContatos,erro);
+    }    
 }

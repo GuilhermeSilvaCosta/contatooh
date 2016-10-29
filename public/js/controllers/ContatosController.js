@@ -5,13 +5,16 @@ function ContatosController($scope, $resource){
     $scope.filtro = '';
 
     $scope.contatos = [];
+    $scope.mensagem = {};
 
     function sucesso(contatos){
         $scope.contatos = contatos;
+        $scope.mensagem = {};
     }
 
     function erro(erro){
         console.log(erro);
+        $scope.mensagem = {texto: erro};
     }
 
     var Contato = $resource('/contatos/:id');

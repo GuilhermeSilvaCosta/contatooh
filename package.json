@@ -21,6 +21,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-load": "^1.1.15",
-    "install": "^0.8.1"
+    "install": "^0.8.1",
+    "mongoose": "^4.6.5"
   }
 }

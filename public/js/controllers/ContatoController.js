@@ -34,4 +34,8 @@ function ContatoController($scope, $routeParams, Contato){
                 .catch(erro);
         }
     }
+
+    Contato.query(function(contatos){
+        $scope.contatos = contatos;
+    }); 
 }

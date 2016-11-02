@@ -20,6 +20,5 @@ module.exports = function(){
             ref: 'Contato'
         }
     });
-
     return mongoose.model('Contato', schema);
 };

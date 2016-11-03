@@ -5,6 +5,7 @@ const session = require('express-session');
 const passport = require('passport');
 const load = require('express-load');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 module.exports = function(){
     const app = express();
     app.set('port',3000);
@@ -21,11 +22,19 @@ module.exports = function(){
         saveUninitialized: true
     }));
     app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(passport.session());    
+    app.use(helmet.frameguard());
+    app.use(helmet.xssFilter());
+    app.use(helmet.noSniff());
+    app.disable('x-powered-by');
     load('models', {cwd: 'app'})
         .then('controllers')
         .then('routes/auth.js')
         .then('routes')
         .into(app);
+
+    app.get('*', function(req, res){
+        res.status(404).render('404');
+    });
     return app;
 };

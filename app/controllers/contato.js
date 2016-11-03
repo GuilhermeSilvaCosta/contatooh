@@ -2,8 +2,8 @@
 
 module.exports = function(app){
     const controller = {};
-
     const Contato = app.models.contato;
+    const sanitize = require('mongo-sanitize');
 
     controller.listaContatos = function(req, res){
         const promise = Contato.find().populate('emergencia').exec()
@@ -33,7 +33,7 @@ module.exports = function(app){
         );
     };
     controller.removeContato = function(req, res){            
-        const _id = req.params.id;
+        const _id = sanitize(req.params.id);
         Contato.remove({"_id": _id}).exec()
         .then(
             function(){
@@ -59,7 +59,12 @@ module.exports = function(app){
     };
     controller.atualizaContato = function(req, res){
         const _id = req.body._id;
-        req.body.emergencia = req.body.emergencia || null;
+        const dados = {
+            "nome" : req.body.name,
+            "email" : req.body.email,
+            "emergencia" : req.body.emergencia || null
+        };
+         
         Contato.findByIdAndUpdate(_id, req.body).exec()
         .then(
             function(contato){

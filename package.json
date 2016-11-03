@@ -23,10 +23,16 @@
     "express": "^4.14.0",
     "express-load": "^1.1.15",
     "express-session": "^1.14.2",
+    "helmet": "^3.0.0",
     "install": "^0.8.1",
+    "mongo-sanitize": "^1.0.0",
     "mongoose": "^4.6.5",
     "mongoose-findorcreate": "^0.1.2",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0"
   }
 }

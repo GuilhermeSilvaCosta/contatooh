@@ -12,4 +12,8 @@ module.exports = function(app){
             res.render("auth");
         }
     });
+    app.get('/logout', function(req, res){
+        req.logOut(); //exposto pelo passaport
+        res.redirect('/');
+    });
 };

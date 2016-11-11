@@ -12,7 +12,10 @@ module.exports = function(grunt){
         clean: {
             dist: {
                 src: 'dist'
-            }
+            },
+            tmp:{
+                src: '.tmp'
+            }            
         },
         usemin:{
             html: 'dist/app/views/**/*.ejs'
@@ -33,8 +36,8 @@ module.exports = function(grunt){
     });
 
     grunt.registerTask('default', ['dist','minifica']);
-    grunt.registerTask('dist', ['clean', 'copy']);
-    grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin'])
+    grunt.registerTask('dist', ['clean:dist', 'copy']);
+    grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin','clean:tmp'])
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');

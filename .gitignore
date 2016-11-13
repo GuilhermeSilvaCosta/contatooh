@@ -4,5 +4,4 @@ dist/
 .tmp/
 .DS_Store
 .DS_Store?
-config/autenticacao.js
 script/

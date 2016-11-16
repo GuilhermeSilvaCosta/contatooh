@@ -21,7 +21,8 @@ module.exports = function(config) {
       'public/vendor/angular-route/angular-route.js',
       'public/js/main.js',
       'public/js/controllers/**/*.js',
-      'public/js/services/**/*.js',      
+      'public/js/services/**/*.js',
+      'public/js/directives/**/*.js',      
       'test/spec/**/*Spec.js'
     ],
 

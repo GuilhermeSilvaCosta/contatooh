@@ -7,8 +7,8 @@ const contatos = [
 ];
 
 MongoClient.connect('mongodb://127.0.0.1:27017/contatooh_test',
-    function(erro, db){
-        if(erro) throw err;
+    function(err, db){
+        if(err) throw err;
 
         db.dropDatabase(function(err){
             if(err) return console.log(err);

@@ -16,7 +16,7 @@ before_script:
     - cd dist
 script:
     - karma start config/karma.config.js --single-run --browsers PhantomJS
-    - node server & 
+    - node server #& 
 #    - protractor config/protractor.js
 env:
     global:

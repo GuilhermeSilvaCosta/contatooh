@@ -21,7 +21,5 @@ script:
 env:
     global:
         - NODE_ENV: test
-addons:
-    sauce_connect: false
 services:
     - mongodb    

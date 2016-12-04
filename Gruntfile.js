@@ -1,7 +1,7 @@
 module.exports = function(grunt){
 
     grunt.initConfig({
-        copy: {
+/**        copy: {
             project: {
                 expand: true,
                 cwd: '.',
@@ -16,30 +16,31 @@ module.exports = function(grunt){
             tmp:{
                 src: '.tmp'
             }            
-        },
+        },*/
         usemin:{
-            html: 'dist/app/views/**/*.ejs'
+            html: 'app/views/**/*.ejs'
         },
         useminPrepare:{
             options:{
-                root: 'dist/public',
-                dest: 'dist/public'
+                root: 'public',
+                dest: 'public'
             },
-            html: 'dist/app/views/**/*.ejs'
+            html: 'app/views/**/*.ejs'
         },
         ngAnnotate: {
             scripts: {
                 expand: true,
-                src: ['dist/public/js/**/*.js']
+                src: ['public/js/**/*.js']
             }
         }
     });
 
-    grunt.registerTask('default', ['dist','minifica']);
-    grunt.registerTask('dist', ['clean:dist', 'copy']);
-    grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin','clean:tmp'])
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-clean');
+    // grunt.registerTask('default', ['dist','minifica']);
+    // grunt.registerTask('dist', ['clean:dist', 'copy']);
+    // grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin','clean:tmp'])
+    grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin'])
+    // grunt.loadNpmTasks('grunt-contrib-copy');
+    // grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');

@@ -1,27 +1,38 @@
 language: node_js
 node_js:
-    - 4.2.6
+- 4.2.6
 notifications:
-    email: tec.guilherme.dsc@gmail.com
+  email: tec.guilherme.dsc@gmail.com
 before_install:
-    - npm isntall -g bower
-    - npm install -g grunt-cli
-    - npm install -g karma-cli
-    - npm install -g protractor
-    - webdriver-manager update
-    - bower install
+- npm isntall -g bower
+- npm install -g grunt-cli
+- npm install -g karma-cli
+- npm install -g protractor
+- webdriver-manager update
+- bower install
 before_script:
-    - node test/data.js
-    - grunt
-    - cd dist
+- node test/data.js
+- grunt minifica
+#- cd dist
+before_deploy:
+- git config --global user.email 'travis@travis-ci.com'
+- git config --global user.name 'Travis CI'
+- git checkout $TRAVIS_BRANCH
+- git add --all
+- git commit -am "Travis commit"
 script:
-    - karma start config/karma.config.js --single-run --browsers PhantomJS
-#    - node server & 
-#    - protractor config/protractor.js
+- karma start config/karma.config.js --single-run --browsers PhantomJS
 env:
-    global:
-        - NODE_ENV: test
-#addons:
-#    sauce_connect: true
+  global:
+  - NODE_ENV: test
 services:
-    - mongodb    
+- mongodb
+deploy:
+  provider: openshift
+  user: tec.guilherme.dsc@gmail.com
+  password:
+    secure: PaJS7MeVJoRofWj4YdMmzXQtLDxeY6K5wEzff913cMXOxvEALVwnGvgujBB8b1V7tW50hdt8D/oNGa+FraF4Y3c8xlbH82BYpXIOF9jeJdaVftN9VE/L2mGAqlYC0J/7XG5CyfjCQMvEemd/mV33heW03myPHlH1fm7DUCHQPjt8C6bv3XtGtzopncBRRx/O7fu5tuT/Ih/E9znKgl71X2jw9Ya8/0UsyERBt5XHxl1Hy+Sw8NG7sUWPsTJKs84FcMuLbKaA3G9up49okSw5g8pGMGUlZQjFsET9tJ+8eLwQDltBuDPp/s9TiQJyIBj9f8i3HRJt07hW1yhneIpoewOJdKciK69DkDmyGYLnFOjEfQ3CcNCPa/Dn3JIOKkPsIx3NnH8VqTpzPqZV9349iZm2GuM6HxBJXD0R34nRsQ/RTeDWaBibmxYCilvOvfXN1YFxrjx0968G8zZ2DbYsQJYI4KsRCoN1epT7qZO12FzXgRrwTHJUJkrOCVzn5325Mf7U1QGSZ4i6GciX1yEdaPM6/lD3ZtPrZ7aN+nLbKPMwIoY7ZhtVvFT7VWVmzWMeVh7bFcbVzHGu/vKzITMVH6V7Y9U/W8AoriSmmXF/nVd9hRR3Pxz3Zpa0ASRP2eQi3d5mhbJn5bphHc+euODlvIAC4vXTbD03zlKJtaxY87g=
+  app: contatooh
+  domain: http://contatooh-livro-mean-stack.44fs.preview.openshiftapps.com/
+  on:
+    repo: GuilhermeSilvaCosta/contatooh
